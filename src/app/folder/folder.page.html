@@ -1,4 +1,4 @@
-<ion-header no-border-bottom no-border-top no-border >
+<ion-header class="no-border" >
   <ion-toolbar class="background">
 
     <ion-buttons slot="start">
@@ -16,19 +16,56 @@
 </ion-header>
 
 <ion-content  class="background">
-  <div class="contenedor">
-    <div class="controles">
-      <!--
-      <div class="circulo">
-        <i class="control"><ion-icon name="play-outline"></ion-icon></i>
+    <div class="circulo">
+      <div class="center">
+        <div class="circulo">
+          <div id="play">
+            <div class="border">
+            </div>
+            <img src="../../assets/img/play.png" class="play">
+          </div>
+          <div id="play2">
+            <div class="border-2"></div>
+          </div>
+        </div>
+
+
+        <div class="loader-container">
+          <div class="rectangle-1"></div>
+          <div class="rectangle-2"></div>
+          <div class="rectangle-3"></div>
+          <div class="rectangle-4"></div>
+          <div class="rectangle-5"></div>
+          <div class="rectangle-6"></div>
+          <div class="rectangle-5"></div>
+          <div class="rectangle-4"></div>
+          <div class="rectangle-3"></div>
+          <div class="rectangle-2"></div>
+          <div class="rectangle-1"></div>
+        </div>
       </div>
-      -->
-      <audio autoplay controls  id='play' preload='auto' tabindex='0' type='audio/mpeg'controls>
-        <source  src='https://radios.sonidoshd.com/8018/stream' type='audio/mp3'/>
-        Hola, tu navegador no está actualizado y no puede mostrar este contenido.
-        </audio>
+
+      <div class="content-volumen">
+        <ion-item lines="none" class="volumen">
+          <ion-range  style="  border-style: none !important;" value="50" color="danger" class="icons"  >
+            <ion-icon slot="start" name="volume-off-outline"></ion-icon>
+            <ion-icon slot="end" name="volume-high-outline"></ion-icon>
+          </ion-range>
+        </ion-item>
+      </div>
+
+
+      <div class="content-redes">
+        <div class="redes">
+          <img class="img-pause" src="../../assets/img/pausa.png" alt="">
+        </div>
+      </div>
+
+
     </div>
-  </div>
+
+
+
 
 
 

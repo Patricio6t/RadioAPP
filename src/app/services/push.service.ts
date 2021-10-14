@@ -10,7 +10,7 @@ export class PushService {
   public stream: any;
   promise: any;
   radio ={
-    title: 'Radio Alteres',
+    title: 'Radio Altares',
     description: 'Tu mejor compañia',
     url: 'https://radios.sonidoshd.com/8018/stream',
     image: 'assets/img/logo.png'

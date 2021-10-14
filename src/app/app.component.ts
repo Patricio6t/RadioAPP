@@ -47,7 +47,8 @@ export class AppComponent {
     initializeApp(){
       this.platform.ready().then(()=>{
         this.pushServices.configuracionInicial();
+        this.pushServices.createNotificationMusic();
+
       });
     }
-
 }
