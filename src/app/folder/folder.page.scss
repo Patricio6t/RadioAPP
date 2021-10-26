@@ -1,80 +1,110 @@
-ion-content.background{
-
-  --background: rgb(54,38,109);
-  --background: linear-gradient(90deg, rgba(54,38,109,1) 21%, rgba(52,37,105,1) 40%, rgba(22,13,54,1) 100%);
-}
-ion-toolbar.background{
-  --background: rgb(54,38,109);
-  --background: linear-gradient(90deg, rgba(54,38,109,1) 21%, rgba(52,37,105,1) 40%, rgba(22,13,54,1) 100%);
+ion-content.background {
+  --background: rgb(54, 38, 109);
+  --background: linear-gradient(90deg, rgba(54, 38, 109, 1) 21%, rgba(52, 37, 105, 1) 40%, rgba(22, 13, 54, 1) 100%);
 }
 
+ion-toolbar.background {
+  --background: rgb(54, 38, 109);
+  --background: linear-gradient(90deg, rgba(54, 38, 109, 1) 21%, rgba(52, 37, 105, 1) 40%, rgba(22, 13, 54, 1) 100%);
+}
+
+.elements {
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  padding: 50px 10px 20px 10px;
+}
 
 ion-menu-button {
-  color: var( --ion-color-primary-contrast);
+  color: var(--ion-color-primary-contrast);
 }
 
-ion-title{
-  color: var( --ion-color-primary-contrast);
+ion-title {
+  color: var(--ion-color-primary-contrast);
 }
 
+.song-container{
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+.song{
+  color: #fff;
+  text-align: center;
+}
+a {
+  color: #fff;
+  text-decoration:none;
+
+}
 #container {
   text-align: center;
-  position: absolute;
+  // position: absolute;
   left: 0;
   right: 0;
   top: 50%;
   transform: translateY(-50%);
 }
 
-ion-buttons a{
-  color : rgb(255, 255, 255);
+ion-buttons a {
+  color: rgb(255, 255, 255);
 }
 
 
 /*PLAY*/
 
-div.center{
+.content-circulo {
+  width: 100%;
+}
+
+div.center {
   display: flex;
   align-items: center;
   justify-content: center;
 
-.circulo{
-  transform:translate(-50%, -50%);
-  width: 100px;
-  height: 100px;
-  -moz-border-radius: 50%;
-  -webkit-border-radius: 50%;
-  border-radius: 50%;
-  background: rgb(41,159,148);
-  background: linear-gradient(90deg, rgba(41,159,148,1) 7%, rgba(116,63,141,1) 100%, rgba(116,63,141,1) 100%);
+  .circulo {
+    margin: 10px auto;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    height: 100px;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    background: rgb(41, 159, 148);
+    background: linear-gradient(90deg, rgba(41, 159, 148, 1) 7%, rgba(116, 63, 141, 1) 100%, rgba(116, 63, 141, 1) 100%);
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
   }
 }
 
 
 #play {
-  position: relative;
   bottom: 50px;
   width: 30px;
   height: 30px;
   right: 50px;
   cursor: pointer;
+  position: absolute;
 
 
   .border {
-    width: 200%;
-    height: 200%;
+    width: 60px;
+    height: 60px;
     border: 1px solid #fff;
-    border-radius: 30px;
+    border-radius: 50%;
   }
 
-  &.is--playing .border {
+   .border-girando {
     border-top: none;
     border-bottom: none;
     animation: spin 1.5s ease-in-out infinite;
 
   }
-/*Play posición*/
-  .play{
+
+  /*Play posición*/
+  .play {
     position: absolute;
     color: #fff;
     top: 15px;
@@ -84,19 +114,35 @@ div.center{
 
 }
 
-#play2 {
+.border-2 {
+  width: 80px;
+  height: 80px;
+  border: 1px solid #fff;
+  border-radius: 50%;
   position: absolute;
-  bottom: 65px;
+}
+
+.border-2-girando {
+  border-left: none;
+  border-right: none;
+  animation: spin 1.5s ease-in-out infinite;
+
+}
+/*
+#play2 {
+  // position: absolute;
+  // bottom: 65px;
   width: 30px;
   height: 30px;
-  right: 65px;
+  // right: 65px;
   cursor: pointer;
 
   .border-2 {
-    width: 300%;
-    height: 300%;
+    width: 80px;
+    height: 80px;
     border: 1px solid #fff;
-    border-radius: 50px;
+    border-radius: 50%;
+    position: absolute;
   }
 
   &.is--playing2 .border-2 {
@@ -106,7 +152,7 @@ div.center{
 
   }
 }
-
+*/
 
 
 
@@ -114,22 +160,26 @@ div.center{
   0% {
     transform: rotate(0deg);
   }
+
   100% {
     transform: rotate(360deg);
   }
 
 }
+
 /*Music*/
 
 .loader-container {
-  bottom: 50px;
   position: relative;
-  height: 40px;
-  width: 160px;
-  margin: 200px auto 0;
+  height: 130px;
+  margin: 10px auto;
+  padding: 50px 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
-.loader-container > div {
+.loader-container>div {
   position: relative;
   display: inline-block;
   background: #03A9F4;
@@ -166,27 +216,33 @@ div.center{
 }
 
 @-moz-keyframes load {
+
   0%,
   100% {
     -moz-transform: scaleY(1);
     background: #03A9F4;
   }
+
   16.67% {
     -moz-transform: scaleY(3);
     background: #FF5722;
   }
+
   33.33% {
     -moz-transform: scaleY(1);
     background: #FF5252;
   }
+
   50% {
     -moz-transform: scaleY(3);
     background: #E91E63;
   }
+
   66.67% {
     -moz-transform: scaleY(1);
     background: #9C27B0;
   }
+
   83.34% {
     -moz-transform: scaleY(3);
     background: #673AB7;
@@ -194,27 +250,33 @@ div.center{
 }
 
 @-webkit-keyframes load {
+
   0%,
   100% {
     -webkit-transform: scaleY(1);
     background: #03A9F4;
   }
+
   16.67% {
     -webkit-transform: scaleY(3);
     background: #FF5722;
   }
+
   33.33% {
     -webkit-transform: scaleY(1);
     background: #FF5252;
   }
+
   50% {
     -webkit-transform: scaleY(3);
     background: #E91E63;
   }
+
   66.67% {
     -webkit-transform: scaleY(1);
     background: #9C27B0;
   }
+
   83.34% {
     -webkit-transform: scaleY(3);
     background: #673AB7;
@@ -222,27 +284,33 @@ div.center{
 }
 
 @keyframes load {
+
   0%,
   100% {
     transform: scaleY(1);
     background: #03A9F4;
   }
+
   16.67% {
     transform: scaleY(3);
     background: #FF5722;
   }
+
   33.33% {
     transform: scaleY(1);
     background: #FF5252;
   }
+
   50% {
     transform: scaleY(3);
     background: #E91E63;
   }
+
   66.67% {
     transform: scaleY(1);
     background: #9C27B0;
   }
+
   83.34% {
     transform: scaleY(3);
     background: #673AB7;
@@ -256,19 +324,20 @@ div.center{
   width: 100%;
 }
 
-.redes{
+.redes {
   bottom: 100px;
-  position: absolute;
+  // position: absolute;
   width: 80px;
   height: 80px;
   -moz-border-radius: 50%;
   -webkit-border-radius: 50%;
   border-radius: 50%;
-  background: rgb(103,21,61);
-  background: linear-gradient(90deg, rgba(103,21,61,1) 7%, rgba(214,101,119,1) 100%, rgba(214,101,119,1) 100%);
+  background: rgb(103, 21, 61);
+  background: linear-gradient(90deg, rgba(103, 21, 61, 1) 7%, rgba(214, 101, 119, 1) 100%, rgba(214, 101, 119, 1) 100%);
 
 }
-.img-pause{
+
+.img-pause {
   max-width: 60px;
   display: block;
   margin-left: auto;
@@ -283,35 +352,56 @@ div.center{
   width: 100%;
 }
 
-.volumen{
---background: none !important;
-width: 100%;
+.volumen {
+  --background: none !important;
+  width: 100%;
 
 }
-.btnborder{
+
+.btnborder {
   border-width: none;
   border: 0;
 }
 
 
 
-.icons{
+.icons {
   color: #fff;
 }
-ion-footer ion-toolbar{
+
+ion-footer ion-toolbar {
   text-align: center;
-  --background: rgb(54,38,109);
-  --background: linear-gradient(90deg, rgba(54,38,109,1) 21%, rgba(52,37,105,1) 40%, rgba(22,13,54,1) 100%);
-  ion-title{
+  --background: rgb(54, 38, 109);
+  --background: linear-gradient(90deg, rgba(54, 38, 109, 1) 21%, rgba(52, 37, 105, 1) 40%, rgba(22, 13, 54, 1) 100%);
+
+  ion-title {
     font-size: 10px;
   }
 }
 
 
+.pause-container {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+  width: 100%;
+}
 
+.pause {
+  width: 70px;
+  height: 70px;
+  background: #BA1C51;
+  border-radius: 50%;
+  box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
-
-
-
-
-
+.bar {
+  width: 10px;
+  height: 30px;
+  background: white;
+  margin: 0 5px;
+}

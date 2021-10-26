@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import { OneSignal } from '@ionic-native/onesignal/ngx';
 import { MusicControls } from '@ionic-native/music-controls/ngx';
+import { RespuestaMusic } from '../interfaces/interface';
+import { HttpClient } from '@angular/common/http';
+
 
 
 @Injectable({
@@ -9,17 +12,20 @@ import { MusicControls } from '@ionic-native/music-controls/ngx';
 export class PushService {
   public stream: any;
   promise: any;
-  radio ={
+  radio = {
     title: 'Radio Altares',
     description: 'Tu mejor compañia',
     url: 'https://radios.sonidoshd.com/8018/stream',
     image: 'assets/img/logo.png'
   };
 
+  public resultStrm: any;
+
   public ejecute: any = false;
 
   constructor(private oneSignal: OneSignal,
-    private musicControls: MusicControls
+    private musicControls: MusicControls,
+    private httpClient: HttpClient
     ) { }
 
 /* ONE SIGNAL Notificaciones push */
@@ -97,7 +103,7 @@ export class PushService {
       this.stream.volume = 1;
       //miaudio.play();
       //this.audio = false;
-     // this.events.publish('updatePlay', { data: 1 });
+      // this.events.publish('updatePlay', { data: 1 });
       //});
 
     }
@@ -122,7 +128,9 @@ export class PushService {
     //this.alertaService.warnAlert(this.restService.headerValidacion, "Contacta al administrador", null);
     //}
     //});
-
+}
+  getDataStreaming() {
+    return this.httpClient.get<RespuestaMusic>('https://radios.sonidoshd.com/cp/get_info.php?p=8018');
   }
 }
 

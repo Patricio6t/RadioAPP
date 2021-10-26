@@ -1,4 +1,4 @@
-<ion-header class="no-border" >
+<ion-header class="no-border">
   <ion-toolbar class="background">
 
     <ion-buttons slot="start">
@@ -8,67 +8,82 @@
     <ion-title>Radio Altares </ion-title>
 
     <ion-buttons slot="end">
-      <a href="https://www.radioaltares.com"><ion-icon name="globe"></ion-icon></a>
-      <a href="https://www.facebook.com/radioaltares"><ion-icon name="logo-facebook"></ion-icon></a>
-      <a href="'https://www.instagram.com/radioaltares/?hl=es-la"><ion-icon name="logo-instagram"></ion-icon></a>
+      <a href="https://www.radioaltares.com">
+        <ion-icon name="globe"></ion-icon>
+      </a>
+      <a href="https://www.facebook.com/radioaltares">
+        <ion-icon name="logo-facebook"></ion-icon>
+      </a>
+      <a href="'https://www.instagram.com/radioaltares/?hl=es-la">
+        <ion-icon name="logo-instagram"></ion-icon>
+      </a>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content  class="background">
-    <div class="circulo">
-      <div class="center">
-        <div class="circulo">
-          <div id="play">
-            <div class="border">
+<ion-content class="background">
+
+  <div class="elements">
+
+    <div class="content-circulo">
+
+      <div class="circulo">
+        <div class="center" (click)="onPlayClick()">
+          <div class="circulo">
+            <div id="play">
+              <div class="border" [ngClass]="{'border-girando': reproduciendo}">
+              </div>
+              <img src="../../assets/img/play.png" class="play">
             </div>
-            <img src="../../assets/img/play.png" class="play">
-          </div>
-          <div id="play2">
-            <div class="border-2"></div>
+            <div class="border-2" [ngClass]="{'border-2-girando': reproduciendo}"></div>
           </div>
         </div>
-
-
-        <div class="loader-container">
-          <div class="rectangle-1"></div>
-          <div class="rectangle-2"></div>
-          <div class="rectangle-3"></div>
-          <div class="rectangle-4"></div>
-          <div class="rectangle-5"></div>
-          <div class="rectangle-6"></div>
-          <div class="rectangle-5"></div>
-          <div class="rectangle-4"></div>
-          <div class="rectangle-3"></div>
-          <div class="rectangle-2"></div>
-          <div class="rectangle-1"></div>
-        </div>
       </div>
-
-      <div class="content-volumen">
-        <ion-item lines="none" class="volumen">
-          <ion-range  style="  border-style: none !important;" value="50" color="danger" class="icons"  >
-            <ion-icon slot="start" name="volume-off-outline"></ion-icon>
-            <ion-icon slot="end" name="volume-high-outline"></ion-icon>
-          </ion-range>
-        </ion-item>
-      </div>
-
-
-      <div class="content-redes">
-        <div class="redes">
-          <img class="img-pause" src="../../assets/img/pausa.png" alt="">
-        </div>
-      </div>
-
-
     </div>
 
+    <div class="song-container">
+      <div class="song">
+        <p> <strong> Canción que esta sonando es: </strong></p>
+          <label>{{song}}</label>
+      </div>
+    </div>
 
+    <div class="loader-container">
+      <div class="rectangle-1"></div>
+      <div class="rectangle-2"></div>
+      <div class="rectangle-3"></div>
+      <div class="rectangle-4"></div>
+      <div class="rectangle-5"></div>
+      <div class="rectangle-6"></div>
+      <div class="rectangle-5"></div>
+      <div class="rectangle-4"></div>
+      <div class="rectangle-3"></div>
+      <div class="rectangle-2"></div>
+      <div class="rectangle-1"></div>
+    </div>
 
+    <div class="content-volumen">
+      <ion-item lines="none" class="volumen">
+        <ion-range (ionChange)="onChangeRange($event)" style="  border-style: none !important;" [value]="volumen" min="0" max="100" color="danger" class="icons">
+          <ion-icon slot="start" name="volume-off-outline"></ion-icon>
+          <ion-icon slot="end" name="volume-high-outline"></ion-icon>
+        </ion-range>
+      </ion-item>
+    </div>
 
+    <div class="pause-container">
+      <div class="pause" (click)="onPauseClick()">
+        <div class="bar"></div>
+        <div class="bar"></div>
+      </div>
+    </div>
 
+    <ion-footer class="ion-no-border">
+      <ion-toolbar>
+        <ion-title><a href="https://www.radioaltares.com">www.radioaltares.com</a></ion-title>
+      </ion-toolbar>
+    </ion-footer>
 
-
+  </div>
 
 </ion-content>
