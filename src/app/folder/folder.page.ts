@@ -10,6 +10,7 @@ import { PushService } from '../services/push.service';
 export class FolderPage implements OnInit {
   reproduciendo: boolean = true;
   audio: HTMLAudioElement;
+
   informacionRadio: any;
   song: string;
   volumen:number = 50;
@@ -20,9 +21,12 @@ export class FolderPage implements OnInit {
         //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
 
-    this.audio = new Audio('https://radios.sonidoshd.com/8018/stream');
-    this.audio.volume = this.volumen/100;
+    //this.audio = new Audio('https://radios.sonidoshd.com/8018/stream');
+    this.pushService.stream.volume = this.volumen/100;
 
+    //this.audio2 = document.getElementById("radio");
+    //console.log(this.audio2);
+    
     this.pushService.getDataStreaming()
     .subscribe(
       (resp )=>{
@@ -46,21 +50,21 @@ export class FolderPage implements OnInit {
 
   onPlayClick() {
 
-    this.audio.play();
+    this.pushService.stream.play();
     this.reproduciendo = true;
 
   }
 
   onPauseClick() {
 
-    this.audio.pause();
+    this.pushService.stream.pause();
     this.reproduciendo = false;
 
   }
 
   onChangeRange(event) {
     // this.audio.volume = event.detail.value;
-    this.audio.volume = event.detail.value / 100;
+    this.pushService.stream.volume = event.detail.value / 100;
     this.volumen = event.detail.value;
   }
   }

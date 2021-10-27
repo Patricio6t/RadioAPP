@@ -26,25 +26,25 @@ export class PushService {
   constructor(private oneSignal: OneSignal,
     private musicControls: MusicControls,
     private httpClient: HttpClient
-    ) { }
+  ) { }
 
-/* ONE SIGNAL Notificaciones push */
-  configuracionInicial(){
-      this.oneSignal.startInit('ea14e173-f874-4b9e-b9ef-e3c076669445', '1051684493500');
+  /* ONE SIGNAL Notificaciones push */
+  configuracionInicial() {
+    this.oneSignal.startInit('ea14e173-f874-4b9e-b9ef-e3c076669445', '1051684493500');
 
-      this.oneSignal.inFocusDisplaying(this.oneSignal.OSInFocusDisplayOption.InAppAlert);
+    this.oneSignal.inFocusDisplaying(this.oneSignal.OSInFocusDisplayOption.InAppAlert);
 
-      this.oneSignal.handleNotificationReceived().subscribe((noti) => {
+    this.oneSignal.handleNotificationReceived().subscribe((noti) => {
       // do something when notification is received
-        console.log('notificación recibida', noti);
-      });
+      console.log('notificación recibida', noti);
+    });
 
-      this.oneSignal.handleNotificationOpened().subscribe((noti) => {
-        // do something when a notification is opened
-        console.log('notificación abierta', noti);
-      });
+    this.oneSignal.handleNotificationOpened().subscribe((noti) => {
+      // do something when a notification is opened
+      console.log('notificación abierta', noti);
+    });
 
-      this.oneSignal.endInit();
+    this.oneSignal.endInit();
   }
 
 
@@ -59,7 +59,7 @@ export class PushService {
       this.stream.play();
       //miaudio.play();
       //this.audio = false;
-     // this.events.publish('updatePlay', { data: 1 });
+      // this.events.publish('updatePlay', { data: 1 });
       //});
 
       this.stream.volume = 1;
@@ -128,7 +128,8 @@ export class PushService {
     //this.alertaService.warnAlert(this.restService.headerValidacion, "Contacta al administrador", null);
     //}
     //});
-}
+  }
+  
   getDataStreaming() {
     return this.httpClient.get<RespuestaMusic>('https://radios.sonidoshd.com/cp/get_info.php?p=8018');
   }
