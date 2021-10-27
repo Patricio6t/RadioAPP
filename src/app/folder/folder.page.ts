@@ -51,14 +51,14 @@ export class FolderPage implements OnInit {
   onPlayClick() {
 
     this.pushService.stream.play();
-    this.reproduciendo = true;
+    //this.reproduciendo = true;
 
   }
 
   onPauseClick() {
 
     this.pushService.stream.pause();
-    this.reproduciendo = false;
+    //this.reproduciendo = false;
 
   }
 

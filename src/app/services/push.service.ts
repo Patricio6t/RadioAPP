@@ -1,3 +1,4 @@
+import { Platform } from '@ionic/angular';
 import { Injectable } from '@angular/core';
 import { OneSignal } from '@ionic-native/onesignal/ngx';
 import { MusicControls } from '@ionic-native/music-controls/ngx';
@@ -22,10 +23,13 @@ export class PushService {
   public resultStrm: any;
 
   public ejecute: any = false;
+  
+  public reproduciendo: boolean = false;
 
   constructor(private oneSignal: OneSignal,
     private musicControls: MusicControls,
-    private httpClient: HttpClient
+    private httpClient: HttpClient,
+    private platform: Platform
   ) { }
 
   /* ONE SIGNAL Notificaciones push */
@@ -45,6 +49,79 @@ export class PushService {
     });
 
     this.oneSignal.endInit();
+
+    /**Configuración inicial de music controls */
+    if(this.platform.is("cordova")){ //this.platform.is("android")
+      console.log("funciona");
+      
+      this.musicControls.listen();
+      this.musicControls.subscribe().subscribe((action:any)=>{
+        this.eventos(action);
+      });
+    }
+  }
+
+  isReproduced(){
+    return this.reproduciendo;
+  }
+
+  eventos(action):void{
+    const message:any = JSON.parse(action).message;
+    switch(message) {
+      /* case 'music-controls-next':
+        
+
+        break;
+      case 'music-controls-previous':
+        // Do something
+        break; */
+      case 'music-controls-pause':
+        // Do something
+        this.stream.pause();
+        this.reproduciendo = false;
+        this.musicControls.updateIsPlaying(false);
+        // Do something
+        break;
+      case 'music-controls-play':
+        // Do something
+        this.stream.play();
+        this.reproduciendo = true;
+        this.musicControls.updateIsPlaying(true);
+        // Do something
+        break;
+      case 'music-controls-destroy':
+        this.stream.pause();
+        this.reproduciendo = false;
+        this.musicControls.updateIsPlaying(false);
+        // Do something
+        break;
+       /*  case 'music-controls-toggle-play-pause' :
+        // Do something
+        break;
+      // Lockscreen seek controls (iOS only)
+        case 'music-controls-seek-to':
+        const seekToInSeconds = JSON.parse(action).position;
+        MusicControls.updateElapsed({
+          elapsed: seekToInSeconds,
+          isPlaying: true
+        });
+        // Do something
+        break;
+  
+      // Headset events (Android only)
+      // All media button events are listed below
+      case 'music-controls-media-button' :
+        // Do something
+        break;
+      case 'music-controls-headset-unplugged':
+        // Do something
+        break;
+      case 'music-controls-headset-plugged':
+        // Do something
+        break;
+      default:
+        break; */
+    }
   }
 
 
@@ -57,6 +134,7 @@ export class PushService {
       localStorage.setItem(`@playSoyLuz`, '1');
       this.stream = new Audio(this.radio.url);
       this.stream.play();
+      this.reproduciendo = true;
       //miaudio.play();
       //this.audio = false;
       // this.events.publish('updatePlay', { data: 1 });
@@ -129,7 +207,7 @@ export class PushService {
     //}
     //});
   }
-  
+
   getDataStreaming() {
     return this.httpClient.get<RespuestaMusic>('https://radios.sonidoshd.com/cp/get_info.php?p=8018');
   }

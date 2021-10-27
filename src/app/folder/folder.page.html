@@ -31,11 +31,11 @@
         <div class="center" (click)="onPlayClick()">
           <div class="circulo">
             <div id="play">
-              <div class="border" [ngClass]="{'border-girando': reproduciendo}">
+              <div class="border" [ngClass]="{'border-girando': this.pushService.reproduciendo}">
               </div>
               <img src="../../assets/img/play.png" class="play">
             </div>
-            <div class="border-2" [ngClass]="{'border-2-girando': reproduciendo}"></div>
+            <div class="border-2" [ngClass]="{'border-2-girando': this.pushService.reproduciendo}"></div>
           </div>
         </div>
       </div>
